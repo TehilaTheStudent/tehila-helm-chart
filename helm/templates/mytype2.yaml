@@ -1,4 +1,4 @@
-apiVersion: sample.codearts.crossplane.io/v1alpha1
+apiVersion: samffffple.codearts.crossplane.io/v1alpha1
 kind: MyType
 metadata:
   name: helm-example-resource-2
