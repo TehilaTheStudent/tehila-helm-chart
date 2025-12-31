@@ -5,4 +5,4 @@ metadata:
 spec:
   forProvider:
     status: "Healthy"
-    message: {{ .Values.mytype2.message }}
+    message: {{ .Values.mytype2message }}
