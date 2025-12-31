@@ -1,15 +1,15 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: my-config
-  namespace: default
-data:
-  # Individual key-value pairs
-  ui_color: "blue"
-  ui_mode: "dark"
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: my-config
+#   namespace: default
+# data:
+#   # Individual key-value pairs
+#   ui_color: "blue"
+#   ui_mode: "dark"
   
-  # A multi-line configuration file
-  app.properties: |
-    max.connections=100
-    enable.cache=true
-    api.url=http://api.example.com
+#   # A multi-line configuration file
+#   app.properties: |
+#     max.connections=100
+#     enable.cache=true
+#     api.url=http://api.example.com
