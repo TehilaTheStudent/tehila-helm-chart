@@ -4,5 +4,5 @@ metadata:
   name: helm-example-resource-2
 spec:
   forProvider:
-    status: "Healthy"
-    message: {{ .Values.mytype2.message }}
+    status: ""
+    message: {{ .Values.mytype2.message }}Healthy
