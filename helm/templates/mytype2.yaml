@@ -6,4 +6,4 @@ spec:
   forProvider:
     status: "Healthy"
     message: {{ .Values.mytype2message }}
-    oldStatus: affffffffffffffffaaaa
+    oldStatus: afffffffffffffffffffffffffffaaaa
