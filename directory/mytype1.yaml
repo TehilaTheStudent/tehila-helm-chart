@@ -1,4 +1,4 @@
-apiVersion: sample.codearts.crossplane.io/v1alpha1
+apiVersion: sample.codeardts.crossplane.io/v1alpha1
 kind: MyType
 metadata:
   name: direxample-resource-1
