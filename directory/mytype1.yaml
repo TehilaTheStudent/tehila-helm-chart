@@ -4,5 +4,5 @@ metadata:
   name: direxample-resource-1
 spec:
   forProvider:
-    status: "Healthy"
+    status: "Degraded"
     message: 1f
