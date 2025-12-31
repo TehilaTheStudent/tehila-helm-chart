@@ -2,7 +2,7 @@ apiVersion: sample.codearts.crossplane.io/v1alpha1
 kind: MyType
 metadata:
   name: helm-example-resource-2
-spec:
+                    spec:
   forProvider:
     status: "Healthy"
     message: {{ .Values.mytype2.message }}
