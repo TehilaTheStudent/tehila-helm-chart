@@ -1,8 +1,8 @@
-apiVersion: sample.codearts.crossplane.io/v1alpha1
-kind: MyType
-metadata:
-  name: direxample-resource-1
-spec:
-  forProvider:
-    status: "Degraded"
-    message: 1ffdafdsafdsafdsafds
+# apiVersion: sample.codearts.crossplane.io/v1alpha1
+# kind: MyType
+# metadata:
+#   name: direxample-resource-1
+# spec:
+#   forProvider:
+#     status: "Degraded"
+#     message: 1ffdafdsafdsafdsafds
