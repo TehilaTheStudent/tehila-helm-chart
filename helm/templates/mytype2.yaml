@@ -4,5 +4,5 @@ metadata:
   name: helm-example-resource-2
 spec:
   forProvider:
-    status: "Degraded"
+    status: "Progressing"
     message: {{ .Values.mytype2.message }}
