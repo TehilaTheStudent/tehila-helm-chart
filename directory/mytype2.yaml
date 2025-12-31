@@ -1,8 +1,8 @@
-# apiVersion: sample.codearts.crossplane.io/v1alpha1
-# kind: MyType
-# metadata:
-#   name: dir-example-resource-2
-# spec:
-#   forProvider:
-#     status: "Healthy"
-#     message: "resource 2: im fdsasuper healthy"
+apiVersion: sample.codearts.crossplane.io/v1alpha1
+kind: MyType
+metadata:
+  name: dir-example-resource-2
+spec:
+  forProvider:
+    status: "Healthy"
+    message: "resource 2: im fdsasuper healthy"
