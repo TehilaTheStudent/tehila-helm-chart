@@ -5,4 +5,4 @@ metadata:
 spec:
   forProvider:
     status: "Healthy"
-    message: 1
+    message: 1f
