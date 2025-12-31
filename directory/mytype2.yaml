@@ -4,5 +4,5 @@ metadata:
   name: dir-example-resource-2
 spec:
   forProvider:
-    status: "Progressing"
+    status: "Degraded"
     message: "resource 2: im fdsasuper healthy"
