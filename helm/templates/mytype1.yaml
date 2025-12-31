@@ -1,0 +1,8 @@
+apiVersion: sample.codearts.crossplane.io/v1alpha1
+kind: MyType
+metadata:
+  name: example-resource-1
+spec:
+  forProvider:
+    status: "Healthy"
+    message: 1f
