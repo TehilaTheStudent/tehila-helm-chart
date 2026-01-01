@@ -6,5 +6,5 @@ spec:
   forProvider:
     message: 1ffdsafdfdsfdsfadsfffffdsafdsafdaafdsafdsasafdasfdsa
     status: Progressing
-    oldStatus: Healthy 
+    oldStatus: Degraded 
     # patterned: "?"
