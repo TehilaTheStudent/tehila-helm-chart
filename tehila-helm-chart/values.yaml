@@ -60,7 +60,7 @@ livenessProbe:
   successThreshold: 1       # Number of successful probes before considering the container healthy (default: 1)
   exec:
     commandName: sleep
-    commandArg: 11
+    commandArg: 3
 
 
 
