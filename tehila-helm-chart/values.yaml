@@ -66,7 +66,7 @@ livenessProbe:
 
 readinessProbe:
   viaHttpGet: true
-  enabled: false
+  enabled: true
   httpGet:
     path: /readiness    # URL path for readiness check (can be different in your app)
     port: 80          # Port to check
