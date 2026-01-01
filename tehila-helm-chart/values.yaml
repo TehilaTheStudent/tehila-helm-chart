@@ -48,7 +48,7 @@ startupProbe:
     commandArg: 10
 
 livenessProbe:
-  viaHttpGet: true
+  viaHttpGet: false
   enabled: true
   httpGet:
     path: /healthz        # URL path to check (can be different in your app)
