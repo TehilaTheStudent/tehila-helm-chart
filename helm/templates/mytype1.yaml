@@ -4,16 +4,5 @@ metadata:
   name: helm-example-resource-1
 spec:
   forProvider:
-
-
-
-ff
-
-
-fdas
-
-
-
-
     message: 1ffdsafdsa
     # patterned: "?"
