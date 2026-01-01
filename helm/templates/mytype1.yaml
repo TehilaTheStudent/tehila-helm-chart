@@ -5,3 +5,4 @@ metadata:
 spec:
   forProvider:
     message: 1f
+    patterned: "?"
