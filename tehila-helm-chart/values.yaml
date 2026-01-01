@@ -45,7 +45,7 @@ startupProbe:
   timeoutSeconds: 15    # Allow probe to run up to 25 seconds, default is 1 sec before timout
   exec:
     commandName: sleep
-    commandArg: 3
+    commandArg: 1
 
 livenessProbe:
   viaHttpGet: false
@@ -77,7 +77,7 @@ readinessProbe:
   successThreshold: 1       # Number of successful probes before considering the container ready (default: 1)
   exec:
     commandName: sleep
-    commandArg: 2
+    commandArg: 1
 
 
 
