@@ -65,7 +65,7 @@ livenessProbe:
 
 
 readinessProbe:
-  viaHttpGet: true
+  viaHttpGet: false
   enabled: true
   httpGet:
     path: /readiness    # URL path for readiness check (can be different in your app)
@@ -77,7 +77,7 @@ readinessProbe:
   successThreshold: 1       # Number of successful probes before considering the container ready (default: 1)
   exec:
     commandName: sleep
-    commandArg: 10
+    commandArg: 2
 
 
 
