@@ -7,3 +7,6 @@ spec:
     
     message: {{ .Values.mytype2message }}
     oldStatus: afffffffffffffffffffffffffffaaaa
+    {{- if .Values.mytype2status }}
+    status: {{ .Values.mytype2status }}
+    {{- end }}
