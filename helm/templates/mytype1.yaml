@@ -5,4 +5,5 @@ metadata:
 spec:
   forProvider:
     message: 1ffdsafdsa
+    status: Progressing
     # patterned: "?"
