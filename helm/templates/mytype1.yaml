@@ -4,7 +4,7 @@ metadata:
   name: helm-example-resource-1
 spec:
   forProvider:
-    message: dsasffffffffffffffffafffffffffffffdasfdsa
+    message: dsasfffffffffffffffffdfdsafdsaafffffffffffffdasfdsa
     status: Progressing
     oldStatus: Healthy 
     # patterned: "?"
