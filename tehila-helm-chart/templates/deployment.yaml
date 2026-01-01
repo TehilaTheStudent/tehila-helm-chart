@@ -1,0 +1,108 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-{{ .Values.name }}
+  labels:
+    app: {{ .Values.labels.app }}
+    environment: {{ .Values.labels.environment }}
+  annotations:
+    description: {{ .Values.annotations.description  | quote }}
+    version: {{ .Values.annotations.version  }}
+    team: {{ .Values.annotations.team  }}
+spec:
+  progressDeadlineSeconds: {{ .Values.progressDeadlineSeconds }}
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-{{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-{{ .Values.name }}
+    spec:
+      containers:
+        - name: nginx
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
+          {{- if .Values.useCommand }}
+          command: {{ toJson .Values.command }}
+          args: {{ toJson .Values.args }}
+          {{- end }}
+          ports:
+            - containerPort: {{ .Values.ports.containerPort }}
+          {{- if .Values.startupProbe.enabled }}
+          startupProbe:
+            {{- if .Values.startupProbe.viaHttpGet }}
+            httpGet:
+              port: {{ .Values.startupProbe.httpGet.port }}
+              path: {{ .Values.startupProbe.httpGet.path }}
+            {{- else }}
+            exec:
+              command: [ "sh", "-c", "{{ .Values.startupProbe.exec.commandName }} {{ .Values.startupProbe.exec.commandArg }}" ]
+            {{- end }}
+            periodSeconds: {{ .Values.startupProbe.periodSeconds }}
+            failureThreshold: {{ .Values.startupProbe.failureThreshold }}
+            timeoutSeconds: {{ .Values.startupProbe.timeoutSeconds }}
+{{/*            initialDelaySeconds: 1*/}}
+{{/*            successThreshold: 1*/}}
+{{/*            terminationGracePeriodSeconds: 1*/}}
+
+          {{- end }}
+          env:
+            - name: MESSAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ .Release.Name }}-{{ .Values.name }}-config
+                  key: message1
+
+            {{- range .Values.envVars }}
+            - name: {{ .name }}
+              value: {{ .value }}
+            {{- end }}
+            - name: vals-val1
+              value: {{ .Values.vals.val1 }}
+            - name: vals-val2
+              value: {{ .Values.vals.val2 }}
+            - name: config-message1
+              value: {{ .Values.config.message1 }}
+            - name: config-message2
+              value: {{ .Values.config.message2 }}
+          {{- if .Values.readinessProbe.enabled }}
+          readinessProbe:
+            {{- if .Values.readinessProbe.viaHttpGet }}
+            httpGet:
+              port: {{ .Values.readinessProbe.httpGet.port }}
+              path: {{ .Values.readinessProbe.httpGet.path }}
+            {{- else }}
+            exec:
+              command: [ "sh", "-c", "{{ .Values.readinessProbe.exec.commandName }} {{ .Values.readinessProbe.exec.commandArg }}" ]
+            {{- end }}
+            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}  # Wait 5 seconds before starting the probe
+            periodSeconds: {{ .Values.readinessProbe.periodSeconds }}    # Check every 10 seconds
+            failureThreshold: {{ .Values.readinessProbe.failureThreshold }}     # If the probe fails 3 times in a row, mark as "not ready"
+          {{- end }}
+          {{- if .Values.livenessProbe.enabled }}
+          livenessProbe:
+            {{- if .Values.livenessProbe.viaHttpGet }}
+            httpGet:
+              port: {{ .Values.livenessProbe.httpGet.port }}
+              path: {{ .Values.livenessProbe.httpGet.path }}
+            {{- else }}
+            exec:
+              command: [ "sh", "-c", "{{ .Values.livenessProbe.exec.commandName }} {{ .Values.livenessProbe.exec.commandArg }}" ]
+            {{- end }}
+            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}  # Wait 10 seconds before starting the probe
+            periodSeconds: {{ .Values.livenessProbe.periodSeconds }}       # Check every 10 seconds
+            failureThreshold: {{ .Values.livenessProbe.failureThreshold }}      # If the probe fails 3 times in a row, restart the pod
+
+          {{- end }}
+          {{- if .Values.limitResources }}
+          resources:
+            requests:
+              memory: {{ .Values.resources.requests.memory }}
+              cpu: {{ .Values.resources.requests.memory }}
+            limits:
+              memory: {{ .Values.resources.limits.memory }}
+              cpu: {{ .Values.resources.limits.memory }}
+          {{- end }}
+

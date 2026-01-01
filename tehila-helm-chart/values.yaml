@@ -1,0 +1,121 @@
+replicaCount: 2
+progressDeadlineSeconds: 600
+
+labels:
+  app: A-my-app
+  environment: A-production
+
+annotations:
+  description: "A-This is a description of the app deployment"
+  version: "A-v1.0.0"
+  team: "A-DevOps"
+
+image:
+  name: nginx
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 80
+
+config:
+  message1: "A-this is val-1 from the manifest in the repo!Addddd"
+  message2: "A-this is val-2 from the manifest in the repo!Addddd"
+  message3: "A-this is val-3 from the manifest in the repo!Addddd"
+  message4: "A-this is val-4 from the manifest in the repo!Addddd"
+
+ports:
+  containerPort: 80
+
+useCommand: false
+command: ["sh","-c"]
+args: ["echo hello"]
+
+
+
+startupProbe:
+  viaHttpGet: false
+  httpGet:
+    path: /startup        # URL path to check (can be different in your app)
+    port: 80
+  enabled: true
+  periodSeconds: 5         # Check every 5 seconds, default is 10 secs, probe check each 10 secs the pod startup
+  failureThreshold: 1      # Fail immediately if not ready, default is 3 times to try before failure
+  timeoutSeconds: 15    # Allow probe to run up to 25 seconds, default is 1 sec before timout
+  exec:
+    commandName: sleep
+    commandArg: 10
+
+livenessProbe:
+  viaHttpGet: true
+  enabled: false
+  httpGet:
+    path: /healthz        # URL path to check (can be different in your app)
+    port: 80            # Port to check
+  initialDelaySeconds: 10   # Delay before the probe starts (default: 0)
+  periodSeconds: 5          # How often the probe runs (default: 10)
+  timeoutSeconds: 2         # Timeout for each probe attempt (default: 1)
+  failureThreshold: 3       # Number of failures before the container is restarted (default: 3)
+  successThreshold: 1       # Number of successful probes before considering the container healthy (default: 1)
+  exec:
+    commandName: sleep
+    commandArg: 10
+
+
+
+readinessProbe:
+  viaHttpGet: true
+  enabled: false
+  httpGet:
+    path: /readiness    # URL path for readiness check (can be different in your app)
+    port: 80          # Port to check
+  initialDelaySeconds: 5    # Delay before the probe starts (default: 0)
+  periodSeconds: 5          # How often the probe runs (default: 10)
+  timeoutSeconds: 1         # Timeout for each probe attempt (default: 1)
+  failureThreshold: 3       # Number of failures before the container is marked "not ready" (default: 3)
+  successThreshold: 1       # Number of successful probes before considering the container ready (default: 1)
+  exec:
+    commandName: sleep
+    commandArg: 10
+
+
+
+vals:
+  val1: AAAAAA
+  val2: AAAAA
+  val3: AAAA
+  val4: "AAAA"
+  val5: "AAAAAaaaaAAAAAAAAAAAAfdsafdafdsfadAAAAAAAAAAAAAAAA"
+  val6: "AAA"
+  val7: "AAAAAAAAAAA"
+  val8: "A"
+  val9: "AAAAAAAAA"
+  val10: "AAAAAAAAAAAA"
+
+envVars:
+  - name: ENV_VAR_1
+    value: "Env Value 1fdsafdsafdafdafdsaffdsafdsa"
+  - name: ENV_VAR_2
+    value: "Env Value 2"
+  - name: ENV_VAR_3
+    value: "Env Value 3"
+  - name: ENV_VAR_4
+    value: "Env Value 4"
+  - name: ENV_VAR_5
+    value: "Env Value 5"
+  - name: ENV_VAR_6
+    value: "Env Value 6AAAAAAAAAA"
+
+resources:
+  limits:
+    cpu: "100m"
+    memory: "128Mi"
+  requests:
+    cpu: "50m"
+    memory: "64Mi"
+
+limitResources: false
+
+
+name: "repo-name"

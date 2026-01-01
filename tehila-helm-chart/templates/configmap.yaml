@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-{{ .Values.name }}-config
+data:
+  app_name: {{ .Values.labels.app }}
+  environment: {{ .Values.labels.environment }}
+  description: {{ .Values.annotations.description }}
+  version: {{ .Values.annotations.version }}
+  team: {{ .Values.annotations.team }}
+  image_name: {{ .Values.image.name }}
+  image_tag: {{ .Values.image.tag }}
+  image_pull_policy: {{ .Values.image.pullPolicy }}
+  message1: {{ .Values.config.message1 }}
+  message2: {{ .Values.config.message2 }}
+  message3: {{ .Values.config.message3 }}
+  message4: {{ .Values.config.message4 }}
+  val1: {{ .Values.vals.val1 }}
+  val2: {{ .Values.vals.val2 }}
+  val3: {{ .Values.vals.val3 }}
+  val4: {{ .Values.vals.val4 }}
+  val5: {{ .Values.vals.val5 }}
+  val6: {{ .Values.vals.val6 }}
+  val7: {{ .Values.vals.val7 }}
+  val8: {{ .Values.vals.val8 }}
+  val9: {{ .Values.vals.val9 }}
+  val10: {{ .Values.vals.val10 }}
+  resource_cpu_limit: {{ .Values.resources.limits.cpu }}
+  resource_memory_limit: {{ .Values.resources.limits.memory }}
+  resource_cpu_request: {{ .Values.resources.requests.cpu }}
+  resource_memory_request: {{ .Values.resources.requests.memory }}
