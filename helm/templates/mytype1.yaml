@@ -1,8 +1,7 @@
-# apiVersion: sample.codearts.crossplane.io/v1alpha1
-# kind: MyType
-# metadata:
-#   name: helm-example-resource-1
-# spec:
-#   forProvider:
-#     status: "Degraded"
-#     message: 1f
+apiVersion: sample.codearts.crossplane.io/v1alpha1
+kind: MyType
+metadata:
+  name: helm-example-resource-1
+spec:
+  forProvider:
+    message: 1f
