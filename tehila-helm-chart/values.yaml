@@ -45,7 +45,7 @@ startupProbe:
   timeoutSeconds: 15    # Allow probe to run up to 25 seconds, default is 1 sec before timout
   exec:
     commandName: sleep
-    commandArg: 10
+    commandArg: 3
 
 livenessProbe:
   viaHttpGet: false
