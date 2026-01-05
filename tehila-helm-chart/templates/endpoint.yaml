@@ -2,6 +2,8 @@ apiVersion: projectman.codearts.crossplane.io/v1alpha1
 kind: Endpoint
 metadata:
   name: example-endpoint-k8sfdsafdasfdsafdsa
+  labels:
+    a: b
 spec:
   forProvider:
     region: cn-north-7
