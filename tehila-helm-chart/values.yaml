@@ -23,7 +23,7 @@ config:
   message1: "A-this is val-1 from the manifest in the repo!Addddd"
   message2: "A-this is val-2 from the manifest in the repo!Addddd"
   message3: "A-this is val-3 from the manifest in the repo!Addddd"
-  message4: "A-this is val-4 from the fffffffmanifesct in the repo!Addddd"
+  message4: "A-this is val-4 fromfdsafdsa the fffffffmanifesct in the repo!Addddd"
 
 ports:
   containerPort: 80
