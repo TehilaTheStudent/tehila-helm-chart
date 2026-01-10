@@ -1,6 +1,6 @@
 apiVersion: v1
 kind: ConfigMap
-metadata: AAAAAAAAAAAAAAAAAAAAAAA
+metadata:
   name: {{ .Release.Name }}-{{ .Values.name }}-config
 data:
   app_name: {{ .Values.labels.app }}
