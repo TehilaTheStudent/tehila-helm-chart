@@ -17,13 +17,13 @@ image:
 
 service:
   type: ClusterIP
-  port: 80
+  port: 80AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 config:
   message1: "A-this is val-1fdsafdsafdsfdsafdasfdsa from the manifest in the rfdsaffdafdafdasdsafdasepo!Addddd"
   message2: "A-this is val-2 from the manifest in the repo!Addddd"
   message3: "A-this is fdfadsfdsafdsafdsaval-3 ffdsafdsafdasrom the manifest in the repo!Addddd"
-  message4: "A-this is val-4 fromfdsfdsafdsafdsaafdsa the fffffffmanifesct in the fdasfdsarepo!Addddd"
+  message4: "A-this is val-4 fromfdsfdsfdafdafdsafdsafdsaafdsa the fffffffmanifesct in the fdasfdsarepo!Addddd"
 
 ports:
   containerPort: 80
