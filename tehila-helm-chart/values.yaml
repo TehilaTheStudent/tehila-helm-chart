@@ -1,4 +1,4 @@
-replicaCount: 1AAAAAAAAAAAAAAAAAAAAA
+replicaCount: 1
 progressDeadlineSeconds: 100
 
 labels:
