@@ -32,14 +32,14 @@ spec:
 
     envLevelVariables:
       - envIdRef:
-          name: production-env
+          name: example-environment-type-host
         variables:
           - name: prod_parameter
             value: "10"
             description: this parameter is used in deployment jobs running on production environment
             type: Integer
       - envIdRef:
-          name: test-env
+          name: test-environment-type-host
         variables:
           - name: test_parameter
             value: "5"
