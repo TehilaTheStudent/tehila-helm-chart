@@ -38,3 +38,11 @@ spec:
             value: "10"
             description: this parameter is used in deployment jobs running on production environment
             type: Integer
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: auth-info-secret
+type: Opaque
+stringData:
+  db-password: 123456
