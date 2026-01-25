@@ -9,7 +9,7 @@ spec:
       name: example-project
     name: example_microservice
     desc: example microservice
-    isFollowd: true
+    isFollowed: true
     repos:
       - type: codehub
         repoIdRef:
