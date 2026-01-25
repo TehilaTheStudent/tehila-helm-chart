@@ -42,7 +42,7 @@ spec:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: auth-info-secret
+  name: db-secret
 type: Opaque
 stringData:
   db-password: 123456
