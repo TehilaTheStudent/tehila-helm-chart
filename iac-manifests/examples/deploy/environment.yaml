@@ -14,8 +14,8 @@ spec:
     # k8s
     containerClusterType: K8S
     thirdContainerClusterIdRef:
-      name: example-k8s-endpoint
-    thirdContainerClusterName: "example-k8s-endpoint"
+      name: example-endpoint-k8s
+    thirdContainerClusterName: "example-endpoint-k8s"
     # cce
     # containerClusterType: CCE
     # thirdContainerClusterId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
