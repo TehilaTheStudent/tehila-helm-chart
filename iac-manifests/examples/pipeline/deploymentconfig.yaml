@@ -23,7 +23,7 @@ spec:
             name: example-endpoint-codehub
           revision: main
           repoIdRef:
-            name: gitops
+            name: gitops-repo
 
           # optional, if repoIdRef is not specified, url is required
           # url: "https://codehub.devcloud.cn-north-7.ulanqab.huawei.com/7bff1301aec7471db147f1c749378f25/example-repo.git"
@@ -46,4 +46,5 @@ spec:
         clusterConfig:
           namespace: default
         syncPolicy:
+
           selfHeal: false
