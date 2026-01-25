@@ -35,4 +35,4 @@ spec:
     # if connecting to a cce cluster
     # containerClusterType: CCE
     # containerClusterRegion: cn-north-7
-    thirdContainerClusterId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+    # thirdContainerClusterId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
