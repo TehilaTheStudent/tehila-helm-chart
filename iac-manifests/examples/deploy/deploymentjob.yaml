@@ -20,9 +20,18 @@ spec:
     gitIdRef:
       name: gitops-repo
     manifestSource: CodeHub
-    manifestType: kustomize
+    manifestType: helm
     path: /manifests
     namespace: example-namespace
+    selfHeal: true
+    variables:
+      - key: image.tag
+        value: latest
+        description: tag of the image
+      - key: image.repository
+        value: example-repo
+        description: repository of the image
+
 ---
 apiVersion: deploy.codearts.crossplane.io/v1alpha1
 kind: DeploymentJob
