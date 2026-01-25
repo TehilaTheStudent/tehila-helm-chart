@@ -45,4 +45,4 @@ metadata:
   name: db-secret
 type: Opaque
 stringData:
-  db-password: 123456
+  db-password: "123456"
