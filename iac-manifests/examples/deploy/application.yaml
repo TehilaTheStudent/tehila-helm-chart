@@ -14,7 +14,7 @@ spec:
 
     appLevelVariables:
       variables:
-        - name: db-password
+        - name: db_password
           valueSecretRef:
             name: db-creds
             key: db-password
@@ -23,7 +23,7 @@ spec:
           isSecurity: true
           isDynamic: false
           type: String
-        - name: sleep-time
+        - name: sleep_time
           value: "10"
           description: this parameter is configurable each deployment
           isSecurity: false
