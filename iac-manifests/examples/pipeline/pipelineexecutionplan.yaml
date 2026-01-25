@@ -9,7 +9,7 @@ spec:
       name: example-pipeline
     projectIdRef:
       name: example-project
-    name: Build and Deploy Stable Version to Beijing
+    name: Build_and_Deploy_Stable_Version_to_Beijing
     runParam:
       description: "build and deploy stable version to Beijing"
       chooseStages:
