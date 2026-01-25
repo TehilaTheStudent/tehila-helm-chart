@@ -30,7 +30,7 @@ spec:
 
     containerClusterType: K8S
     thirdContainerClusterIdRef:
-      name: example-endpoint
+      name: example-endpoint-k8s
 
     # if connecting to a cce cluster
     # containerClusterType: CCE
