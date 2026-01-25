@@ -4,7 +4,7 @@ metadata:
   name: example-extension
 spec:
   forProvider:
-    region: cn-north-4
+    region: cn-north-7
     domainId: <domain_id>
     pluginName: example-plugin
     displayName: Food Checker
