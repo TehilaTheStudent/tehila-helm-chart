@@ -61,4 +61,4 @@ spec:
     hostList:
       - hostIdRef:
           name: example-host-target
-        hostTag: grey        
+        hostTag: gray        
