@@ -292,3 +292,11 @@ spec:
 
     parameterGroupIdRefs:
       - name: example-parametergroup
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ec2-password
+type: Opaque
+stringData:
+  password: "123456"
