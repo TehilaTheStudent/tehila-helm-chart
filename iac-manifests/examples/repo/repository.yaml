@@ -10,3 +10,16 @@ spec:
     name: example_repo
     description: "example repository containing source code for example"
     enableReadme: 1
+---
+apiVersion: repo.codearts.crossplane.io/v1alpha1
+kind: Repository
+metadata:
+  name: gitops-repo
+spec:
+  forProvider:
+    region: cn-north-7
+    projectIdRef:
+      name: example-project
+    name: gitops_repo
+    description: "example repository containing gitops helm charts manifests"
+    enableReadme: 1    
