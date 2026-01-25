@@ -41,7 +41,7 @@ spec:
                   inputs:
                     - key: jobId
                       valueFromBuildTaskIdRef:
-                        name: example-build-task
+                        name: example-buildtask
                     - key: artifactIdentifier
                       value: ""
                     - key: __repository__ # repository name
