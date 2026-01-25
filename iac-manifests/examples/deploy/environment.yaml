@@ -1,0 +1,43 @@
+apiVersion: deploy.codearts.crossplane.io/v1alpha1
+kind: Environment
+metadata:
+  name: example-environment-type-container
+spec:
+  forProvider:
+    region: cn-north-7
+    projectIdRef:
+      name: example-project
+    name: example-environment-type-container
+    envType: container
+    environmentCategoryType: TEST
+    description: "environment linked to k8s/cce cluster"
+    # k8s
+    containerClusterType: K8S
+    thirdContainerClusterIdRef:
+      name: example-k8s-endpoint
+    thirdContainerClusterName: "example-k8s-endpoint"
+    # cce
+    # containerClusterType: CCE
+    # thirdContainerClusterId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+    # thirdContainerClusterName: "production-cluster"
+---
+apiVersion: deploy.codearts.crossplane.io/v1alpha1
+kind: Environment
+metadata:
+  name: example-environment-type-host
+spec:
+  forProvider:
+    region: cn-north-7
+    projectIdRef:
+      name: example-project
+    name: example-environment-type-host
+    envType: host
+    environmentCategoryType: PRODUCT
+    description: "environment linked to thirdparty hosts"
+
+    clusterIdRef:
+      name: example-infrastructurecluster-type-host
+    hostList:
+      - hostIdRef:
+          name: example-host-target
+        hostTag: production

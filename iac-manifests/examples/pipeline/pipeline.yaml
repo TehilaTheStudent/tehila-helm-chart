@@ -1,0 +1,294 @@
+apiVersion: pipeline.codearts.crossplane.io/v1alpha1
+kind: Pipeline
+metadata:
+  name: example-pipeline
+spec:
+  forProvider:
+    region: cn-north-7
+    projectIdRef:
+      name: example-project
+    name: cicd
+    description: "ci cd pipeline of example"
+    concurrencyControl:
+      concurrencyNumber: 1
+      exceedAction: ABORT
+      enable: true
+    cancelStrategy:
+      enable: true
+      cancelStrategies:
+        - granularity: MR
+          cancelStrategy: CANCEL
+
+    definition:
+      stages:
+        - name: Build Image
+          sequence: 0
+          identifier: build-image-stage
+          pre:
+            - task: official_devcloud_autoTrigger
+          jobs:
+            - name: Build Image
+              identifier: build-image-job
+              sequence: 0
+              steps:
+                - name: Build
+                  sequence: 0
+                  identifier: build-image-step
+                  task: official_devcloud_cloudBuild
+                  runtimeAttribution: agent
+                  officialTaskVersion: 0.0.4
+                  businessType: Build
+                  inputs:
+                    - key: jobId
+                      valueFromBuildTaskIdRef:
+                        name: example-build-task
+                    - key: artifactIdentifier
+                      value: ""
+                    - key: __repository__ # repository name
+                      value: example_repo
+                    - key: __sameProject__
+                      value: "true"
+
+        - name: Manual Review
+          sequence: 1
+          identifier: manual-review-stage
+          dependsOn: ["build-image-stage"]
+          pre:
+            - task: official_devcloud_autoTrigger
+          jobs:
+            - name: ManualReview
+              identifier: manual-review-job
+              sequence: 0
+              steps:
+                - name: ManualReview
+                  sequence: 0
+                  identifier: manual-review-step
+                  task: official_devcloud_checkpoint
+                  runtimeAttribution: agentless
+                  officialTaskVersion: 0.0.6
+                  businessType: Normal
+                  inputs:
+                    - key: audit_source
+                      value: members
+                    - key: approvers
+                      value: "123456789abcdef00000000000000000"
+                    - key: audit_role
+                      value: ""
+                    - key: check_strategy
+                      value: all
+                    - key: timeout_strategy
+                      value: reject
+                    - key: timeout
+                      value: 360
+                    - key: comment
+                      value: "review before deployment for production environment"
+
+        - name: "Extract Latest Version"
+          sequence: 2
+          identifier: "extract-latest-version-stage"
+          dependsOn: ["manual-review-stage"]
+          pre:
+            - task: "official_devcloud_autoTrigger"
+
+          jobs:
+            - name: "Extract Latest Version"
+              identifier: "extract-latest-version-job"
+              sequence: 0
+              steps:
+                - name: Clone Source Code
+                  runtimeAttribution: agent
+                  multiStepEditable: 1
+                  identifier: "clone-source-code-step"
+                  sequence: 0
+                  businessType: Normal
+                  task: official_git_clone
+                - name: "Output Latest Version"
+                  runtimeAttribution: agent
+                  multiStepEditable: 1
+                  identifier: "output-latest-version-step"
+                  officialTaskVersion: "0.0.2"
+                  businessType: "Normal"
+                  task: "official_shell_plugin"
+                  sequence: 1
+                  inputs:
+                    - key: "OFFICIAL_SHELL_SCRIPT_INPUT"
+                      value: |
+                        version=$(cat $SHARE_PATH/example-repo/version)
+                        echo ::set-output-var=version:${version}
+
+        - name: "Deploy To Beijing"
+          sequence: 3
+          identifier: "deploy-microservice-instance-stage"
+          dependsOn: ["extract-latest-version-stage"]
+          pre:
+            - task: "official_devcloud_autoTrigger"
+          jobs:
+            - name: "Deploy Microservice Instance To Beijing"
+              sequence: 0
+              identifier: "deploy-microservice-instance-job"
+              steps:
+                - name: "Deploy Microservice Instance To Beijing"
+                  runtimeAttribution: agent
+                  multiStepEditable: 1
+                  officialTaskVersion: "0.0.11"
+                  identifier: "deploy-microservice-instance-step"
+                  sequence: 0
+                  task: "DeployMicroserviceInstance"
+                  businessType: "Deploy"
+                  inputs:
+                    - key: "Environment"
+                      valueFromEnvironmentIdRef:
+                        name: example-environment
+                    - key: "Microservice"
+                      valueFromMicroserviceIdRef:
+                        name: example-microservice
+                    - key: "CHANGE_ID_INPUT_PARAM"
+                      value: ""
+                    - key: "DeploymentManifestPatchParameters" # helm parameters to override in this deployment
+                      value: '[{"key":"image.tag","value":"${COMMIT_ID_SHORT}"},{"key":"version","value":"${{ jobs.extract-latest-version-job.outputs.version }}"}]'
+                    - key: "isWait"
+                      value: true
+        - name: Create Release Tag
+          sequence: 4
+          identifier: "create-tag-stage"
+          dependsOn: ["deploy-microservice-instance-stage"]
+          pre:
+            - task: "official_devcloud_autoTrigger"
+          jobs:
+            - name: "Create Tag"
+              sequence: 0
+              identifier: "create-tag-job"
+              steps:
+                - name: "Create Tag In Git Repo"
+                  identifier: create-tag-step
+                  sequence: 0
+                  businessType: Normal
+                  task: official_devcloud_createTag
+                  officialTaskVersion: 0.0.4
+                  multiStepEditable: 1
+                  runtimeAttribution: agentless
+                  inputs:
+                    - key: tag_name
+                      value: ${package_version}
+                    - key: repo_name
+                      value: example_repo # repository name
+                    - key: continue_on_existence
+                      value: true
+
+        - name: Upload Latest Openapi
+          sequence: 5
+          identifier: "upload-latest-openapi-stage"
+          dependsOn: ["create-tag-stage"]
+          pre:
+            - task: "official_devcloud_autoTrigger"
+          jobs:
+            - name: "Upload OBS"
+              sequence: 0
+              identifier: "upload-latest-openapi-job"
+              steps:
+                - name: "Clone Source Code"
+                  runtimeAttribution: agent
+                  sequence: 0
+                  businessType: Normal
+                  multiStepEditable: 1
+                  identifier: "git-clone-step"
+                  task: "official_git_clone"
+                  officialTaskVersion: 0.0.2
+                - name: "Upload Latest Openapi to OBS"
+                  runtimeAttribution: "agent"
+                  sequence: 1
+                  multiStepEditable: 1
+                  identifier: "upload-latest-openapi-step"
+                  officialTaskVersion: "0.0.4"
+                  task: "upload-obs"
+                  businessType: "Normal"
+                  inputs:
+                    - key: endpoint_select
+                      valueFromEndpointIdRef:
+                        name: example-endpoint-iam
+                    - key: bucket
+                      value: docs-assets
+                    - key: key
+                      value: openapi
+                    - key: source_file
+                      value: ${SHARE_PATH}/example-repo/openapi-yamls/
+                    - key: self_folder
+                      value: "false"
+    sources:
+      - type: code
+        params:
+          gitType: codehub
+          codehubIdRef:
+            name: example-repo
+          defaultBranch: master
+
+    variables:
+      # string variable example
+      - name: package_name
+        value: "service_a"
+        description: "package name"
+        isRuntime: true
+        type: string
+        sequence: 1
+
+        # enum variable example
+      - name: GO_ENV
+        type: enum
+        value: "dev"
+        description: "environment of the package"
+        isRuntime: true
+        limits:
+          - dev
+          - test
+          - prod
+        sequence: 2
+
+      # autoIncrement variable example
+      - name: package_version
+        type: autoIncrement
+        isRuntime: true
+        value: "0.0.1"
+        description: "version of the package"
+        isStrict: false
+        sequence: 3
+
+      # secret variable example
+      - name: EC2_PASSWORD
+        type: string
+        valueSecretRef:
+          name: "ec2-password"
+          key: "password"
+          namespace: "default"
+        description: "ec2 password for login"
+        isRuntime: false
+        isSecret: true
+        sequence: 4
+
+    triggers:
+      - repoIdRef:
+          name: example-repo
+        gitType: codehub
+        events:
+          - type: push
+            enable: true
+            branches: ["master"]
+            excludeBranches: ["fix/*"]
+            paths: ["src/*"]
+            excludePaths: ["test/*"]
+          - type: merge_request
+            enable: true
+            branches: ["master"]
+            codeUpdate: true
+            update: true
+            create: true
+            merge: true
+            excludePaths: ["test/*"]
+
+    tagIdRefs:
+      - name: example-pipelinetag
+
+    groupIdRef:
+      name: example-pipelinegroup
+
+    parameterGroupIdRefs:
+      - name: example-parametergroup

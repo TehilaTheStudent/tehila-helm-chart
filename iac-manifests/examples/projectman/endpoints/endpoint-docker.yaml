@@ -1,0 +1,22 @@
+apiVersion: projectman.codearts.crossplane.io/v1alpha1
+kind: Endpoint
+metadata:
+  name: example-endpoint-docker
+spec:
+  forProvider:
+    region: cn-north-7
+    projectIdRef:
+      name: example-project
+    name: example-endpoint-docker
+    type: docker
+    authorization:
+      url: "https://index.docker.io/v1/"
+      dockerCreds:
+        usernameRef:
+          name: docker-creds
+          key: username
+          namespace: default
+        passwordRef:
+          name: docker-creds
+          key: password
+          namespace: default

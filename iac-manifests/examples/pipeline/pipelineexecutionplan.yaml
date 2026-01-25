@@ -1,0 +1,23 @@
+apiVersion: pipeline.codearts.crossplane.io/v1alpha1
+kind: PipelineExecutionPlan
+metadata:
+  name: example-pipelineexecutionplan
+spec:
+  forProvider:
+    region: cn-north-7
+    pipelineIdRef:
+      name: example-pipeline
+    projectIdRef:
+      name: example-project
+    name: Build and Deploy Stable Version to Beijing
+    runParam:
+      description: "build and deploy stable version to Beijing"
+      chooseStages:
+        - build-image-stage
+        - deploy-microservice-instance-stage
+      chooseJobs:
+        - build-image-job
+        - deploy-microservice-instance-job
+      variables:
+        - name: image_tag
+          value: stable

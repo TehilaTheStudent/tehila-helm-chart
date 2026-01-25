@@ -1,0 +1,71 @@
+apiVersion: build.codearts.crossplane.io/v1alpha1
+kind: BuildTask
+metadata:
+  name: example-buildtask
+spec:
+  forProvider:
+    region: cn-north-7 # optional, defaults to installation region
+    projectIdRef:
+      name: example-project
+    groupIdRef:
+      name: example-buildgroup
+
+    jobName: push-image-to-swr
+    buildConfigType: ACTION
+    sourceCode: codeci
+    buildEnvironmentType: docker
+    hostType: devcloud
+    arch: x86-64
+    description: build task to build the image for example and push to swr
+    flavor: DEFAULT
+    buildIfCodeUpdated: false
+
+    parameters:
+      - name: hudson.model.StringParameterDefinition
+        params:
+          - name: name
+            value: image_tag
+          - name: type # can be normalparam, customizeparam, version
+            value: normalparam # means its a string
+          - name: defaultValue
+            value: v1.1
+          - name: staticVar # runtime settings, privateParam ( staticVar = true ) cant be runtime settings
+            value: "true"
+          - name: sensitiveVar
+            value: "false" # means its a secret var, only type = nornalparam can be sensitiveVar
+          - name: description
+            value: "image tag for the image to be built"
+          - name: deletion
+            value: "false"
+          - name: defaults
+            value: "false"
+
+    steps:
+      - properties:
+          registryUrl:
+            displayName: SWR
+            value: swr.cn-north-7.myhuaweicloud.com
+          setMetaData: "no"
+          image: docker18.03
+          cache: "true"
+          imageName: example-image
+          selectRegion: cn-north-7
+          contextPath: .
+          iamEndPoint: {}
+          authUser:
+            displayName: Current
+            value: current
+          dockerFilePath: ./Dockerfile
+          organization: gartner-demo
+          tag: ${image_tag}
+          endpointUuid: {}
+          preCondition: SUCCESS
+        moduleId: devcloud2018.codeci_action_20004.action
+        name: Build Image and Push to SWR
+
+    scms:
+      - repoIdRef:
+          name: example-repo
+        branch: "master"
+        scmType: codehub
+        buildType: branch

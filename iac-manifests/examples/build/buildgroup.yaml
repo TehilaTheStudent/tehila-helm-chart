@@ -1,0 +1,10 @@
+apiVersion: build.codearts.crossplane.io/v1alpha1
+kind: BuildGroup
+metadata:
+  name: example-buildgroup
+spec:
+  forProvider:
+    region: cn-north-7 
+    projectIdRef:
+      name: example-project
+    name: docker-artifacts

@@ -1,0 +1,22 @@
+apiVersion: release.codearts.crossplane.io/v1alpha1
+kind: Environment
+metadata:
+  name: example-environment
+spec:
+  forProvider:
+    region: cn-north-7
+    projectIdRef:
+      name: example-project
+    environmentName: prod-beijing
+    environmentCategoryType: PRODUCT
+    description: "example production environment"
+
+    resourceType: K8S
+
+    # if resourceType=K8S
+    endpointName: example-endpoint-k8s
+    endpointIdRef:
+      name: example-endpoint-k8s
+
+    # if resourceType=CCE
+    # clusterId: "27a1c26f-b280-11ef-8ea9-0255ac10003b"

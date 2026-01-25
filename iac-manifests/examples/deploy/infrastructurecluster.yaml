@@ -1,0 +1,38 @@
+apiVersion: deploy.codearts.crossplane.io/v1alpha1
+kind: InfrastructureCluster
+metadata:
+  name: example-infrastructurecluster-type-host
+spec:
+  forProvider:
+    region: cn-north-7
+    projectIdRef:
+      name: example-project
+    name: example-infrastructurecluster
+    description: "infrastructurecluster example connecting through proxy to thirdparty hosts"
+    clusterType: host
+
+    osType: linux
+    hostClusterType: third_party
+    isProxyMode: 1
+---
+apiVersion: deploy.codearts.crossplane.io/v1alpha1
+kind: InfrastructureCluster
+metadata:
+  name: example-infrastructurecluster-type-container
+spec:
+  forProvider:
+    region: cn-north-7
+    projectIdRef:
+      name: example-project
+    name: example-infrastructurecluster
+    description: "infrastructurecluster example connecting to k8s/cce cluster"
+    clusterType: container
+
+    containerClusterType: K8S
+    thirdContainerClusterIdRef:
+      name: example-endpoint
+
+    # if connecting to a cce cluster
+    # containerClusterType: CCE
+    # containerClusterRegion: cn-north-7
+    thirdContainerClusterId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"

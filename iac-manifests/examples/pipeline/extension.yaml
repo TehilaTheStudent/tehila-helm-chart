@@ -1,0 +1,73 @@
+apiVersion: pipeline.codearts.crossplane.io/v1alpha1
+kind: Extension
+metadata:
+  name: example-extension
+spec:
+  forProvider:
+    region: cn-north-4
+    domainId: <domain_id>
+    pluginName: example-plugin
+    displayName: Food Checker
+    description: check you favorite food
+    businessType: Normal
+    businessTypeDisplayName: Normal
+    versions:
+      - version: 0.0.1
+        versionAttribution: draft
+        runtimeAttribution: agent
+        versionDescription: check your favorite food
+        executionType: COMPOSITE
+        inputInfo:
+          - name: favorite_food
+            defaultValue: value1
+            type: d-input
+            layoutContent:
+              - componentName: d-form
+                id: 1763648596858
+                category: form
+                props:
+                  layout: vertical
+                  ref: formRef
+                children:
+                  - componentName: d-form-item # d-input
+                    id: 1763648596859
+                    category: form
+                    props:
+                      label: Enter Favorite Food
+                      field: favorite_food
+                      helpTips: use you mind please to decide on the value
+                      disabled: false
+                      visible:
+                        type: fixed
+                        value: true
+                      rules:
+                        - required: true
+                          message: this field is required
+                          trigger:
+                            - blur
+                            - change
+                        - regex: ^[^-]+$
+                          message: "this field should not contain -"
+                          trigger:
+                            - blur
+                            - change
+                    children:
+                      - componentName: d-input
+                        id: 1763648596860
+                        category: form
+                        props:
+                          inputType: normal
+                          showPlaceholder: yummy banana...
+                          isTrim: true
+                          autocomplete: "off"
+                          defaultValue: water with chocolate
+                          disabled:
+                            type: fixed
+                            value: false
+
+        steps:
+          - task: official_shell_plugin # an official extension used in custom extensions
+            name: Shell Command
+            variables:
+              OFFICIAL_SHELL_SCRIPT_INPUT: |-
+                echo ::set-output var=favorite_food:$favorite_food

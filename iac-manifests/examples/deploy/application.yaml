@@ -1,0 +1,47 @@
+apiVersion: deploy.codearts.crossplane.io/v1alpha1
+kind: Application
+metadata:
+  name: example-application-container
+spec:
+  forProvider:
+    region: cn-north-7
+    projectIdRef:
+      name: example-project
+    name: example-application-container
+    description: "Example Application Deploying Examples"
+    deploymentType: container
+    isFavorite: true
+
+    appLevelVariables:
+      variables:
+        - name: db-password
+          valueSecretRef:
+            name: db-creds
+            key: db-password
+            namespace: default
+          description: private value obtained from secret
+          isSecurity: true
+          isDynamic: false
+          type: String
+        - name: sleep-time
+          value: "10"
+          description: this parameter is configurable each deployment
+          isSecurity: false
+          isDynamic: true
+          type: Integer
+
+    envLevelVariables:
+      - envIdRef:
+          name: production-env
+        variables:
+          - name: prod-parameter
+            value: "10"
+            description: this parameter is used in deployment jobs running on production environment
+            type: Integer
+      - envIdRef:
+          name: test-env
+        variables:
+          - name: test-parameter
+            value: "5"
+            description: this parameter is used in deployment jobs running on test environment
+            type: Integer

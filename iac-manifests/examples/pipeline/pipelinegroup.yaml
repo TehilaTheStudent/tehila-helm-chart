@@ -1,0 +1,11 @@
+apiVersion: pipeline.codearts.crossplane.io/v1alpha1
+kind: PipelineGroup
+metadata:
+  name: ci-group
+spec:
+  forProvider:
+    region: cn-north-7
+    projectIdRef:
+      name: example-project
+    name: ci
+

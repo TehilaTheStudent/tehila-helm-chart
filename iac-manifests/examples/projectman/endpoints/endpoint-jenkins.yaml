@@ -1,0 +1,24 @@
+apiVersion: projectman.codearts.crossplane.io/v1alpha1
+kind: Endpoint
+metadata:
+  name: example-endpoint-jenkins
+spec:
+  forProvider:
+    region: cn-north-7
+    projectIdRef:
+      name: example-project
+
+    name: example-endpoint-jenkins
+    type: jenkins
+
+    authorization:
+      url: https://1.2.3.4:8080
+      jenkinsCreds:
+        usernameRef:
+          name: jenkins-creds
+          key: username
+          namespace: default
+        passwordRef:
+          name: jenkins-creds
+          key: password
+          namespace: default

@@ -1,0 +1,11 @@
+apiVersion: pipeline.codearts.crossplane.io/v1alpha1
+kind: PipelineTag
+metadata:
+  name: example-pipelinetag
+spec:
+  forProvider:
+    region: cn-north-7
+    projectIdRef:
+      name: example-project
+    name: cd
+    color: "#FF0000"

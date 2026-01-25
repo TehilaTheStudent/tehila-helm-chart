@@ -1,0 +1,36 @@
+apiVersion: release.codearts.crossplane.io/v1alpha1
+kind: MicroserviceInstance
+metadata:
+  name: example-microserviceinstance
+spec:
+  forProvider:
+    region: cn-north-7
+    projectIdRef:
+      name: example-project
+    componentName: example_microservice
+    componentIdRef:
+      name: example-microservice
+    environmentIdRef:
+      name: example-environment
+    deploymentConfigIdRef:
+      name: example-deployment-config
+    deploymentManifest:
+      deployerManifest:
+        common:
+          revision: main
+        sourceConfig:
+          path: "./helm-charts/example-prod-chart/"
+        helmValues:
+          valueFiles: ["values.yaml", "values-prod.yaml"]
+          parameters:
+            - key: image.tag
+              value: "1.0.0"
+            - key: image.repository
+              value: "swr.ap-southeast-3.myhuaweicloud.com/example-org/example-image"
+          deletedParameters: # disable parameters inheritance from the deployment configuration
+            - image.tag
+            - image.repository
+        clusterConfig:
+          namespace: prod
+        syncPolicy:
+          selfHeal: false  

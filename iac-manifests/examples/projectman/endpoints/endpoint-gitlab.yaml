@@ -1,0 +1,22 @@
+apiVersion: projectman.codearts.crossplane.io/v1alpha1
+kind: Endpoint
+metadata:
+  name: example-endpoint-gitlab
+spec:
+  forProvider:
+    region: cn-north-7
+    projectIdRef:
+      name: example-project
+    name: example-endpoint-gitlab
+    type: gitlab
+    authorization:
+      url: "https://gitlab.com"
+      gitlabCreds:
+        passwordRef:
+          name: gitlab-creds
+          key: password
+          namespace: default
+        username:
+          name: gitlab-creds
+          key: username
+          namespace: default

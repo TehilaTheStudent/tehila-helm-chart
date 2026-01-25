@@ -1,0 +1,94 @@
+apiVersion: deploy.codearts.crossplane.io/v1alpha1
+kind: DeploymentJob
+metadata:
+  name: container-gitops
+spec:
+  forProvider:
+    region: cn-north-7
+    projectIdRef:
+      name: example-project
+    appIdRef:
+      name: example-application-container
+    envIdRef:
+      name: example-environment-type-container
+    name: container-gitops
+    description: Deployment job for gitops
+    type: GITOPS
+
+    # fields for GITOPS type
+    branch: master
+    gitIdRef:
+      name: example-repo
+    manifestSource: CodeHub
+    manifestType: kustomize
+    path: /manifests
+    namespace: example-namespace
+---
+apiVersion: deploy.codearts.crossplane.io/v1alpha1
+kind: DeploymentJob
+metadata:
+  name: host-flow
+spec:
+  forProvider:
+    region: cn-north-7
+    projectIdRef:
+      name: example-project
+    appIdRef:
+      name: example-application-host
+    envIdRef:
+      name: example-environment-type-host
+    name: host-flow
+    description: Deployment job for type flow
+    type: FLOW
+
+    # fields for FLOW type
+    jobs:
+      - displayName: 执行shell命令
+        description: 在linux主机上执行输入的shell命令。[查看操作指南](https://support.huaweicloud.com/usermanual-deployman/deployman_hlp_1002.html)
+        iconUrl: https://cn-north-6-wukong-prod.obs.cn-north-6.myhuaweicloud.com/extensions/devcloud2018/execute_shell_command/1.0.169/img/Shell.png
+        task: devcloud2018.execute_shell_command.execute_shell_command
+        type: ANS
+        inputs:
+          - name: groupId
+            label: 环境
+            displaySettings:
+              DevCloud.ControlType: Hidden
+          - name: shell_command
+            label: shell命令
+            displaySettings:
+              DevCloud.ControlType: CodeText
+            defaultValue: echo hello
+          - name: faq_url
+            label: ""
+            displaySettings:
+              DevCloud.ControlType: Hidden
+            defaultValue: /deployman_faq_0030.html
+          - name: controller_enabled
+            label: ""
+            displaySettings:
+              DevCloud.ControlType: Hidden
+            defaultDisplay:
+              - displayName: 启用
+                value: "1"
+          - name: controller_enabled_ignore_errors
+            label: ""
+            displaySettings:
+              DevCloud.ControlType: Checkbox
+            defaultDisplay:
+              - displayName: 失败后继续运行
+                value: "0"
+          - name: visibleRule
+            label: ""
+            displaySettings:
+              DevCloud.ControlType: Hidden
+            defaultValue: '{"groupId":{"value":true},"shell_command":{"value":true},"faq_url":{"value":true},"controller_enabled":{"value":true},"controller_enabled_ignore_errors":{"value":true},"visibleRule":{"value":true},"controller_enabled_sudo":{"value":true}}'
+          - name: controller_enabled_sudo
+            label: ""
+            displaySettings:
+              DevCloud.ControlType: Checkbox
+            defaultDisplay:
+              - displayName: 使用sudo权限执行
+                value: "0"
+        identifier: "0"
+        dependsOn: []
+        enable: true

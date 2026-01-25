@@ -1,0 +1,24 @@
+apiVersion: projectman.codearts.crossplane.io/v1alpha1
+kind: Endpoint
+metadata:
+  name: example-endpoint-iam
+spec:
+  forProvider:
+    region: cn-north-7
+    projectIdRef:
+      name: example-project
+
+    name: example-endpoint-iam
+    type: iam
+
+    authorization:
+      url: https://iam.cn-north-7.myhuaweicloud.com
+      iamCreds:
+        akRef:
+          name: iam-creds
+          key: ak
+          namespace: default
+        skRef:
+          name: iam-creds
+          key: sk
+          namespace: default

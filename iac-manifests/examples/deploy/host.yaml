@@ -1,0 +1,47 @@
+apiVersion: deploy.codearts.crossplane.io/v1alpha1
+kind: Host
+metadata:
+  name: example-host-proxy
+spec:
+  forProvider:
+    region: cn-north-7
+    projectIdRef:
+      name: example-project
+    clusterIdRef:
+      name: example-infrastructurecluster-type-host
+    hostName: example-host-proxy
+    ip: 1.2.3.4
+    osType: linux
+    port: 22
+    authType: password
+    userName: "root"
+    authInfoSecretRef:
+      name: auth-info-secret
+      key: password
+      namespace: default
+    asProxy: true
+---
+apiVersion: deploy.codearts.crossplane.io/v1alpha1
+kind: Host
+metadata:
+  name: example-host-target
+spec:
+  forProvider:
+    region: cn-north-7
+    projectIdRef:
+      name: example-project
+    clusterIdRef:
+      name: example-infrastructurecluster-type-host
+    hostName: example-host-target
+    ip: 5.6.7.8
+    osType: linux
+    port: 22
+    authType: private_key
+    userName: "root"
+    authInfoSecretRef:
+      name: auth-info-secret
+      key: private_key
+      namespace: default
+    asProxy: false
+    proxyHostIdRef:
+      name: example-host-proxy

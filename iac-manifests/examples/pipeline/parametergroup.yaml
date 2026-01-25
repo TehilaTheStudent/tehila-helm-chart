@@ -1,0 +1,42 @@
+apiVersion: pipeline.codearts.crossplane.io/v1alpha1
+kind: ParameterGroup
+metadata:
+  name: example-parametergroup
+spec:
+  forProvider:
+    region: cn-north-7
+    projectIdRef:
+      name: example-project
+    name: "example_parametergroup"
+    description: "Example parameter group that can be used in pipelines"
+    variables:
+      - name: "DATABASE_URL"
+        value: "postgresql://localhost:5432/mydb"
+        type: "string"
+        isSecret: false
+        description: "Database connection URL"
+        sequence: 1
+      - name: "API_KEY"
+        valueSecretRef:
+          name: "secret-api-key" 
+          key: "api_key"
+          namespace: "default"
+        type: "string"
+        isSecret: true
+        description: "Secret API key for service"
+        sequence: 2
+      - name: "MAX_CONNECTIONS"
+        value: "100"
+        type: "string"
+        isSecret: false
+        description: "Maximum number of database connections"
+        sequence: 3
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret-api-key
+  namespace: default
+type: Opaque
+stringData:
+  api_key: "my-secret-api-key"
