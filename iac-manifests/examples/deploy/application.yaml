@@ -34,14 +34,14 @@ spec:
       - envIdRef:
           name: production-env
         variables:
-          - name: prod-parameter
+          - name: prod_parameter
             value: "10"
             description: this parameter is used in deployment jobs running on production environment
             type: Integer
       - envIdRef:
           name: test-env
         variables:
-          - name: test-parameter
+          - name: test_parameter
             value: "5"
             description: this parameter is used in deployment jobs running on test environment
             type: Integer
