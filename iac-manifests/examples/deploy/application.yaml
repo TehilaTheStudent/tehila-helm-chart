@@ -39,6 +39,20 @@ spec:
             description: this parameter is used in deployment jobs running on production environment
             type: Integer
 ---
+apiVersion: deploy.codearts.crossplane.io/v1alpha1
+kind: Application
+metadata:
+  name: example-application-host
+spec:
+  forProvider:
+    region: cn-north-7
+    projectIdRef:
+      name: example-project
+    name: example-application-host
+    description: "Example Application Deploying Examples"
+    deploymentType: host
+    isFavorite: true
+---
 apiVersion: v1
 kind: Secret
 metadata:
