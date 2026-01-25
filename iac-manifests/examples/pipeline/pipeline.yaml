@@ -71,7 +71,7 @@ spec:
                     - key: audit_source
                       value: members
                     - key: approvers
-                      value: "123456789abcdef00000000000000000"
+                      value: "a74d385a6f094641adb1f2f12f0ba68f"
                     - key: audit_role
                       value: ""
                     - key: check_strategy
