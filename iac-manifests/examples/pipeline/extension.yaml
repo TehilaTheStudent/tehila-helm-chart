@@ -5,7 +5,7 @@ metadata:
 spec:
   forProvider:
     region: cn-north-7
-    domainId: <domain_id>
+    domainId: 6f191719acf241daaf0626b422ea1c75
     pluginName: example-plugin
     displayName: Food Checker
     description: check you favorite food
