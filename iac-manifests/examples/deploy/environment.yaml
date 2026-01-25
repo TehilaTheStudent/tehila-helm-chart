@@ -41,24 +41,3 @@ spec:
       - hostIdRef:
           name: example-host-target
         hostTag: production
----
-apiVersion: deploy.codearts.crossplane.io/v1alpha1
-kind: Environment
-metadata:
-  name: test-environment-type-host
-spec:
-  forProvider:
-    region: cn-north-7
-    projectIdRef:
-      name: example-project
-    name: test-environment-type-host
-    envType: host
-    environmentCategoryType: TEST
-    description: "test environment linked to thirdparty hosts"
-
-    clusterIdRef:
-      name: example-infrastructurecluster-type-host
-    hostList:
-      - hostIdRef:
-          name: example-host-target
-        hostTag: gray        
