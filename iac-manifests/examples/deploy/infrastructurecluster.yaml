@@ -24,7 +24,7 @@ spec:
     region: cn-north-7
     projectIdRef:
       name: example-project
-    name: example-infrastructurecluster
+    name: example-endpoint-k8s
     description: "infrastructurecluster example connecting to k8s/cce cluster"
     clusterType: container
 
