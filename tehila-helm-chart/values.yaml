@@ -13,7 +13,7 @@ annotations:
 image:
   name: nginx
   tag: latest
-  pullPolicy: AlwaysAAAAAAAAAAAAAAAAAAA
+  pullPolicy: Always
 
 service:
   type: ClusterIP
