@@ -28,9 +28,9 @@ config:
 ports:
   containerPort: 80
 
-useCommand: false
+useCommand: true
 command: ["sh","-c"]
-args: ["echo hello"]
+args: ["sleep 20 && echo hello"]
 
 
 
