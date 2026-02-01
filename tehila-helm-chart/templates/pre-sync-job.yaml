@@ -21,4 +21,4 @@ spec:
           args:
             - |
               echo "Not approved — failing."
-              exit 1
+              exit {{ .Values.preSyncJob.exitCode }}

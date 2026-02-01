@@ -1,6 +1,9 @@
 replicaCount: 1
 progressDeadlineSeconds: 10
 
+preSyncJob:
+  exitCode: 0
+
 labels:
   app: A-my-app
   environment: A-production
