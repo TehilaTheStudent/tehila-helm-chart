@@ -21,4 +21,4 @@ spec:
           args:
             - |
               echo "Not approved — failing."
-              exit 0
+              exit 1
