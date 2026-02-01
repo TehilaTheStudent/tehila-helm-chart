@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  namespace: codearts
+  name: tehila-test-pre-sync-job
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+spec:
+  backoffLimit: 5
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: api-check
+          image: swr.cn-north-7.myhuaweicloud.com/fuxi-ci/tehilathestudent/net-tools:latest
+          imagePullPolicy: IfNotPresent
+          command:
+            - "/bin/sh"
+            - "-c"
+          args:
+            - |
+              sleep 2
+              echo "Not approved — failing."
+              exit 1
