@@ -1,5 +1,5 @@
-replicaCount: 0
-progressDeadlineSeconds: 10
+replicaCount: 1
+progressDeadlineSeconds: 1
 
 preSyncJob:
   exitCode: 0
