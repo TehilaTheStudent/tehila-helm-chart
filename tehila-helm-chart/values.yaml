@@ -15,7 +15,7 @@ annotations:
   team: "A-DevOps"
 
 image:
-  name: nginx
+  name: swr.cn-north-7.myhuaweicloud.com/fuxi-ci/nginx
   tag: latest
   pullPolicy: Always
 
