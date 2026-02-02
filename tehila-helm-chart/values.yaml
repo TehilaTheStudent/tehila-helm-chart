@@ -1,7 +1,8 @@
 replicaCount: 1
 progressDeadlineSeconds: 1
 
-preSyncJob:
+preSyncJob:  
+  enabled: false
   exitCode: 0
 
 labels:

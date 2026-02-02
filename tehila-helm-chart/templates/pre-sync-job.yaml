@@ -1,3 +1,4 @@
+{{- if .Values.preSyncJob.enabled }}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -22,3 +23,4 @@ spec:
             - |
               echo "Not approved — failing."
               exit {{ .Values.preSyncJob.exitCode }}
+{{- end }}
