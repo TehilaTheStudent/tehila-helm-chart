@@ -1,5 +1,5 @@
 replicaCount: 1
-progressDeadlineSeconds: 5
+progressDeadlineSeconds: 15
 
 preSyncJob:  
   enabled: false
