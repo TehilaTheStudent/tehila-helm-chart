@@ -2,7 +2,7 @@ replicaCount: 1
 progressDeadlineSeconds: 1
 
 preSyncJob:
-  exitCode: 1
+  exitCode: 0
 
 labels:
   app: A-my-app
