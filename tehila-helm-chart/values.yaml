@@ -32,7 +32,7 @@ config:
 ports:
   containerPort: 80
 
-useCommand: true
+useCommand: false
 command: ["sh","-c"]
 args: ["exit 1"]
 # args: [" sleep infinity"]
