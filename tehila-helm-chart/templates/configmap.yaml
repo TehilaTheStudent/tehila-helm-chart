@@ -15,6 +15,10 @@ data:
   message2: {{ .Values.config.message2 }}
   message3: {{ .Values.config.message3 }}
   message4: {{ .Values.config.message4 }}
+  cm1: {{ .Values.cm.msg1 }}
+  cm2: {{ .Values.cm.msg2 }}
+  cm3: {{ .Values.cm.msg3 }}
+  cm4: {{ .Values.cm.msg4 }}
   val1: {{ .Values.vals.val1 }}
   val2: {{ .Values.vals.val2 }}
   val3: {{ .Values.vals.val3 }}

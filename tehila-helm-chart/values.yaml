@@ -23,6 +23,12 @@ service:
   type: ClusterIP
   port: 80AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
+cm:
+  msg1: aaa
+  msg2: bbb
+  msg3: ccc
+  msg4: ddd
+
 config:
   message1: "A-tsfhis dasfdsadafdasfdsafdsafdsas1fdsafdsafdsfdsafdasfdsfdsaffffffffffffffffffa from the manifest in the rfdsaffdafdafdasdsafdasepo!Addddd"
   message2: "A-this is val-2 frofdasfdsafdsam the manifest in the repo!Addddd"
@@ -122,5 +128,12 @@ resources:
 
 limitResources: false
 
+secret:
+  enabled: true
+  name: app-secret-config
+  type: Opaque
+  data:
+    username: YWRtaW4=
+    password: bXlfdsafdsaffdsfdsafdsafdsafdasafdsafdsdsawYXNzd29yZA==
 
 name: "repo-name"
