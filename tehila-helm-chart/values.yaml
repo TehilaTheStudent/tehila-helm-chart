@@ -26,7 +26,7 @@ service:
 cm:
   msg1: aaaf
   msg2: bbb
-  msg3: ccc
+  msg3: cccf
   msg4: ddd
 
 config:
