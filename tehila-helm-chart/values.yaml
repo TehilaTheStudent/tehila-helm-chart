@@ -24,7 +24,7 @@ service:
   port: 80AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 cm:
-  msg1: aaaf
+  msg1: aaafA
   msg2: bbb
   msg3: cccf
   msg4: ddd
