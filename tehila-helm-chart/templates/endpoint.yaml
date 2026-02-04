@@ -1,20 +1,20 @@
-apiVersion: projectman.codefdafdsafdsaarts.crossplane.io/v1alpha1
-kind: Endpoint
-metadata:
-  name: example-endpoint-k8sfdsafdasfdsafdsa
-  labels:
-    a: b
-spec:
-  forProvider:
-    region: cn-north-7
-    projectIdRef:
-      name: example-project
-    name: example-endpoint-k8s
-    type: kubernetes
-    authorization:
-      url: "https://a.com"
-      kubernetesCreds:
-        kubeconfig:
-          name: k8s-creds
-          key: kubeconfig
-          namespace: default
+# apiVersion: projectman.codefdafdsafdsaarts.crossplane.io/v1alpha1
+# kind: Endpoint
+# metadata:
+#   name: example-endpoint-k8sfdsafdasfdsafdsa
+#   labels:
+#     a: b
+# spec:
+#   forProvider:
+#     region: cn-north-7
+#     projectIdRef:
+#       name: example-project
+#     name: example-endpoint-k8s
+#     type: kubernetes
+#     authorization:
+#       url: "https://a.com"
+#       kubernetesCreds:
+#         kubeconfig:
+#           name: k8s-creds
+#           key: kubeconfig
+#           namespace: default
