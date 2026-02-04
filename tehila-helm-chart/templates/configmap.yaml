@@ -25,6 +25,7 @@ data:
   val8: {{ .Values.vals.val8 }}
   val9: {{ .Values.vals.val9 }}
   val10: {{ .Values.vals.val10 }}
+  
   resource_cpu_limit: {{ .Values.resources.limits.cpu }}
   resource_memory_limit: {{ .Values.resources.limits.memory }}
   resource_cpu_request: {{ .Values.resources.requests.cpu }}
