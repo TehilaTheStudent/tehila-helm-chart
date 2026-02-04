@@ -1,5 +1,6 @@
 apiVersion: projectman.codefdafdsafdsaarts.crossplane.io/v1alpha1
 kind: Endpoint
+fffffffffffffffffffffffffffffff
 metadata:
   name: example-endpoint-k8sfdsafdasfdsafdsa
   labels:
