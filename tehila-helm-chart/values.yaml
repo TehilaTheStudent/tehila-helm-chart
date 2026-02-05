@@ -139,7 +139,7 @@ secret:
 mytype1:
   enabled: true
   name: direxample-resource-1
-  status: "Degraded"
+  status: "Missing"
   message: "1ffdafdsafdsafdsafds"
 
 mytype2:
