@@ -137,13 +137,13 @@ secret:
     password: bXlfdsafdsaffdsfdsafdsafdsafdasafdsafdsdsawYXNzd29yZA==
 
 mytype1:
-  enabled: true
+  enabled: false
   name: direxample-resource-1
   status: "Healthy"
   message: "1ffdafdsafdsafdsafds"
 
 mytype2:
-  enabled: true
+  enabled: false
   name: dir-example-resource-2
   status: "Healthy"
   message: "resource 2: im fdsasuper healthy"
