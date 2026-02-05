@@ -136,4 +136,16 @@ secret:
     username: YWRtaW4=
     password: bXlfdsafdsaffdsfdsafdsafdsafdasafdsafdsdsawYXNzd29yZA==
 
+mytype1:
+  enabled: true
+  name: direxample-resource-1
+  status: "Degraded"
+  message: "1ffdafdsafdsafdsafds"
+
+mytype2:
+  enabled: true
+  name: dir-example-resource-2
+  status: "Degraded"
+  message: "resource 2: im fdsasuper healthy"
+
 name: "repo-name"

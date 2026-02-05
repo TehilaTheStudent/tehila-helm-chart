@@ -1,0 +1,10 @@
+{{- if .Values.mytype1.enabled }}
+apiVersion: sample.codearts.crossplane.io/v1alpha1
+kind: MyType
+metadata:
+  name: {{ .Values.mytype1.name }}
+spec:
+  forProvider:
+    status: {{ .Values.mytype1.status | quote }}
+    message: {{ .Values.mytype1.message | quote }}
+{{- end }}
