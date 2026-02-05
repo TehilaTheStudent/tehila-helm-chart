@@ -38,7 +38,7 @@ config:
 ports:
   containerPort: 80
 
-useCommand: true
+useCommand: false
 command: ["sh","-c"]
 args: ["exit 1"]
 # args: [" sleep infinity"]
@@ -139,13 +139,13 @@ secret:
 mytype1:
   enabled: true
   name: direxample-resource-1
-  status: "Missing"
+  status: "Healthy"
   message: "1ffdafdsafdsafdsafds"
 
 mytype2:
   enabled: true
   name: dir-example-resource-2
-  status: "Degraded"
+  status: "Healthy"
   message: "resource 2: im fdsasuper healthy"
 
 name: "repo-name"
