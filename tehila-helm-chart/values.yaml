@@ -17,7 +17,7 @@ annotations:
 image:
   name: swr.cn-north-7.myhuaweicloud.com/fuxi-ci/nginx
   tag: latest
-  pullPolicy: Always
+  pullPolicy: AlwaysA
 
 service:
   type: ClusterIP
