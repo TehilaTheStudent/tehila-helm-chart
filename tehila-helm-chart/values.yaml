@@ -106,7 +106,7 @@ vals:
 
 envVars:
   - name: ENV_VAR_1
-    value: "Envff Value 1fdsafdsafffffdafdafdsaffdsafdsa"
+    value: "Envff Value 1fdsafdfsafffffdafdafdsaffdsafdsa"
   - name: ENV_VAR_2
     value: "Env Value 2"
   - name: ENV_VAR_3
