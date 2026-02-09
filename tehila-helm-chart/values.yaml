@@ -33,7 +33,7 @@ config:
   message1: "A-tsfhisfffdfsssffffffffffffa from the manifest in the rfdsaffdafdafdasdsafdasepo!Addddd"
   message2: "A-this is vfal-2 frofdasfdsafdsam the manifest in the repo!Addddd"
   message3: "A-thisfv f ids fdfafdsfdsadsfdsafdsafdsafdsafdasval-3 fffdasfdsadsafdsafdasrom the manifest in the repo!Addddd"
-  message4: "A-this isf ffval-ff4ff dthe fffffffmct bin tfhef fdasfdsarepo!Addddd"
+  message4: "A-this isf ffval-ff4ff dthe ffffdfffmct bin tfhef fdasfdsarepo!Addddd"
 
 ports:
   containerPort: 80
