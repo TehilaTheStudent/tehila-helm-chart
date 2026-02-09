@@ -102,7 +102,7 @@ vals:
   val7: "AAAAAAAAAAA"
   val8: "A"
   val9: "AAAAAAfdsafdsafdsaAAA"
-  val10: "AAAAAAAAAAAA"
+  val10: "AAAAAAAAAfAAA"
 
 envVars:
   - name: ENV_VAR_1
