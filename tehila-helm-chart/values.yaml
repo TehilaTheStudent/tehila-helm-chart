@@ -116,7 +116,7 @@ envVars:
   - name: ENV_VAR_5
     value: "Env Value 5"
   - name: ENV_VAR_6
-    value: "Env Value 6AAAAfAAAAAA"
+    value: "Env Value 6vAAAAfAAAAAA"
 
 resources:
   limits:
