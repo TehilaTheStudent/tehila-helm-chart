@@ -145,7 +145,7 @@ mytype1:
 mytype2:
   enabled: true
   name: dir-example-resource-2
-  status: "Healthy"
+  status: "Missing"
   message: "resource 2: im fdsasuper healthy"
 
 name: "repo-name"
