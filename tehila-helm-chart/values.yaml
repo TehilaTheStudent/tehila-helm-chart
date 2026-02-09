@@ -137,7 +137,7 @@ secret:
     password: bXlfdsafdsaffdsfdsafdsafdsafdasafdsafdsdsawYXNzd29yZA==
 
 mytype1:
-  enabled: false
+  enabled: true
   name: direxample-resource-1
   status: "Healthy"
   message: "1ffdafdsafdsafdsafds"
